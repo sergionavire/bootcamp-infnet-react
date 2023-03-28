@@ -58,7 +58,7 @@ export function NotePadView() {
           ></textarea>
         </div>
         <div className="flex flex-row gap-5">
-          <ButtonDelete id={notePad.id} reload={false} className="w-1/2" />
+          <ButtonDelete id={notePad.id} className="w-1/2" />
           <Button
             className="w-1/2"
             onClick={() => {

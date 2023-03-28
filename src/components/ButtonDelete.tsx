@@ -4,9 +4,8 @@ import { Button } from "./Button";
 import { message } from "../utils/message";
 
 type ButtonDeleteProps = {
-  id: Number;
+  id: number;
   className?: string;
-  reload: boolean;
 };
 
 export function ButtonDelete(props: ButtonDeleteProps) {
@@ -20,9 +19,6 @@ export function ButtonDelete(props: ButtonDeleteProps) {
 
         if (deleteNotepadResponse.success) {
           message("O notepad foi excluído com sucesso", true);
-          if (props.reload) {
-            window.location.reload();
-          }
           navigate("/");
         } else {
           message("Houve algum erro na exclusão", false);

@@ -26,7 +26,15 @@ export function Home() {
     <div>
       <h2 className="font-bold mb-3 text-2xl ml-2">Lista de anotações:</h2>
       <div>{loadingTextStatus}</div>
-      <NotePadList notepad_list={notepadList} />
+      <NotePadList
+        notepad_list={notepadList}
+        onDelete={(id) => {
+          const newNotepads = notepadList.filter(
+            (notepad) => notepad.id !== id
+          );
+          setNotepadList(newNotepads);
+        }}
+      />
     </div>
   );
 }
