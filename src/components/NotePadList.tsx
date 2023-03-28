@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ButtonDelete } from "./ButtonDelete";
 
@@ -14,15 +14,14 @@ type NotepadListProps = {
 export function NotePadList({ notepad_list }: NotepadListProps) {
   return (
     <div className="ml-4 divide-y">
-      {notepad_list.map((notepad) => {
+      {notepad_list.map((notepad, index) => {
         return (
-          <div className="flex">
+          <div key={notepad.id} className="flex cursor-pointer hover:bg-slate-100">
             <Link
-              key={notepad.id}
               to={`/notepad-view/${notepad.id}`}
-              className="flex-grow py-4 hover:cursor-pointer hover:underline block hover:bg-slate-100"
+              className="flex-grow py-4 hover:underline block "
             >
-              <span>Id: {notepad.id}</span>
+              <span>Id: {notepad.id} / Index: {index}</span>
               <h3 className="font-semibold text-xl">{notepad.title}</h3>
               <p className="text-sm">{notepad.subtitle}</p>
             </Link>
@@ -30,8 +29,12 @@ export function NotePadList({ notepad_list }: NotepadListProps) {
               <ButtonDelete
                 id={notepad.id}
                 reload={true}
-                className='w-auto mr-5 md:w-52'
+                className='w-auto mr-5 md:w-52 hover:underline hover:bg-red-400'
               />
+              <button onClick={() => {
+                notepad_list.splice(index, 1);
+                console.log('aqui');
+              }}>teste</button>
             </div>
           </div>
         );

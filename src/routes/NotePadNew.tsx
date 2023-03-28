@@ -4,7 +4,7 @@ import { apiNotePad } from "../api/apiNotePad";
 import { NavigationSteps } from "../components/NavigationSteps";
 import { TextareaField } from "../components/TextareaField";
 import { TextField } from "../components/TextField";
-import { Mesage } from "../components/Mesage";
+import { message } from "../utils/message";
 
 type NotePadUpdateType = {
   id: number;
@@ -25,8 +25,8 @@ export function NotePadNew() {
     <div className="w-full md:w-3/5 m-auto flex flex-col gap-3">
       <NavigationSteps
         steps={[
-          { to: "/", title: "HOME" },
-          { to: "/notepad-new/", title: "NOVO" },
+          { to: "/", title: "Home" },
+          { to: "/notepad-new/", title: "Novo" },
         ]}
       />
       <form
@@ -57,11 +57,11 @@ export function NotePadNew() {
           console.log(createNotepadResponse.success);
           if (createNotepadResponse.success) {
             //alert("O notepad foi criado com sucesso");
-            Mesage("O notepad foi criado com sucesso", true);
+            message("O notepad foi criado com sucesso", true);
             navigate("/");
           } else {
             //alert("Houve algum erro na criação.");
-            Mesage("Houve algum erro na criação", false);
+            message("Houve algum erro na criação", false);
           }
         }}
         className="w-full m-auto flex flex-col gap-3 shadow-2xl p-5"

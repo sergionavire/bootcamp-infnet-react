@@ -1,17 +1,16 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { apiNotePad } from "../api/apiNotePad";
-import { Button } from "../components/Button";
-import { Mesage } from "../components/Mesage";
+import { message } from "../utils/message";
 import { NavigationSteps } from "../components/NavigationSteps";
 
 export function NotePadUpdate() {
   const params = useParams();
   const navigate = useNavigate();
-  const [createdAt, setCreatedAt] = useState('');
-  const [title, setTitle] = useState('');
-  const [subtitle, setSubtitle] = useState('');
-  const [content, setContent] = useState('');
+  const [createdAt, setCreatedAt] = useState("");
+  const [title, setTitle] = useState("");
+  const [subtitle, setSubtitle] = useState("");
+  const [content, setContent] = useState("");
   useEffect(() => {
     apiNotePad.get(`/notepads/${params.id}`).then((item) => {
       setCreatedAt(item.data.created_at);
@@ -23,26 +22,26 @@ export function NotePadUpdate() {
 
   return (
     <div className="w-full md:w-3/5 m-auto flex flex-col gap-3">
-        <NavigationSteps
-            steps={[
-                    {to: '/', title: 'HOME'},
-                    {to: '/notepad-update/', title: 'ATUALIZAR'},
-                ]}
-            />
+      <NavigationSteps
+        steps={[
+          { to: "/", title: "Home" },
+          { to: "/notepad-update/", title: "Atualizar" },
+        ]}
+      />
       <form
         noValidate
         onSubmit={async (event) => {
           event.preventDefault();
-          if(title.length === 0){
-            alert('O título deve ser preenchido');
+          if (title.length === 0) {
+            alert("O título deve ser preenchido");
             return;
           }
-          if(subtitle.length === 0){
-            alert('O subtítulo deve ser preenchido');
+          if (subtitle.length === 0) {
+            alert("O subtítulo deve ser preenchido");
             return;
           }
-          if(content.length === 0){
-            alert('O conteúdo deve ser preenchido');
+          if (content.length === 0) {
+            alert("O conteúdo deve ser preenchido");
             return;
           }
 
@@ -53,14 +52,17 @@ export function NotePadUpdate() {
           };
           console.log(sendObject);
 
-          const res = await apiNotePad.put(`/notepads/${params.id}`, sendObject);
+          const res = await apiNotePad.put(
+            `/notepads/${params.id}`,
+            sendObject
+          );
           const updateNotepadResponse = res.data;
 
           if (updateNotepadResponse.success) {
-            Mesage('O notepad foi alterado com sucesso', true);
+            message("O notepad foi alterado com sucesso", true);
             navigate(`/notepad-view/${params.id}`);
           } else {
-            Mesage('Houve algum erro na alteração do notepad', false);
+            message("Houve algum erro na alteração do notepad", false);
           }
         }}
         className="w-full m-auto flex flex-col gap-3 shadow-2xl p-5"

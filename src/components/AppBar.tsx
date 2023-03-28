@@ -1,9 +1,6 @@
 import { Link } from "react-router-dom";
-import { Button } from "./Button";
 import { LinkButton } from "./LinkButton";
-import logo from "../image/logo-icon.svg";
-import toast from "react-simple-toasts";
-import { Mesage } from "./Mesage";
+import logo from "../assets/logo-icon.svg";
 
 export function AppBar() {
   return (
