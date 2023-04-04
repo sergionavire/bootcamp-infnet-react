@@ -29,9 +29,7 @@ export function NotePadList({ notepad_list, onDelete }: NotepadListProps) {
               to={`/notepad-view/${notepad.id}`}
               className="flex-grow py-4 hover:underline block "
             >
-              <span>
-                Id: {notepad.id} / Index: {index}
-              </span>
+              <span>Id: {notepad.id}</span>
               <h3 className="font-semibold text-xl">{notepad.title}</h3>
               <p className="text-sm">{notepad.subtitle}</p>
             </Link>
